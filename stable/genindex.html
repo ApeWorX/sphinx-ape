@@ -7,7 +7,7 @@
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
   </script><link rel="stylesheet" type="text/css" href="_static/pygments.css?v=397bb51e" />
-    <link rel="stylesheet" type="text/css" href="_static/shibuya.css?v=83eaa723" />
+    <link rel="stylesheet" type="text/css" href="_static/shibuya.css?v=add26080" />
     <link media="print" rel="stylesheet" type="text/css" href="_static/print.css?v=20ff2c19" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,8 +57,8 @@ data-aria-dark="Switch to auto color mode">
 
 <div class="genindex-jumpbox">
  <a href="#Symbols"><strong>Symbols</strong></a>
- | <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -128,20 +128,6 @@ data-aria-dark="Switch to auto color mode">
   </ul></td>
 </tr></table>
 
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="methoddocs/exceptions.html#sphinx_ape.exceptions.ApeDocsBuildError">ApeDocsBuildError</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="methoddocs/exceptions.html#sphinx_ape.exceptions.ApeDocsPublishError">ApeDocsPublishError</a>
-</li>
-      <li><a href="methoddocs/exceptions.html#sphinx_ape.exceptions.ApeDocsTestError">ApeDocsTestError</a>
-</li>
-  </ul></td>
-</tr></table>
-
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -175,7 +161,17 @@ data-aria-dark="Switch to auto color mode">
       </ul></li>
       <li><a href="methoddocs/build.html#sphinx_ape.build.DocumentationBuilder.build">build() (sphinx_ape.build.DocumentationBuilder method)</a>
 </li>
+      <li><a href="methoddocs/exceptions.html#sphinx_ape.exceptions.BuildError">BuildError</a>
+</li>
       <li><a href="methoddocs/build.html#sphinx_ape.build.BuildMode">BuildMode (class in sphinx_ape.build)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="methoddocs/build.html#sphinx_ape.build.DocumentationBuilder.clean">clean() (sphinx_ape.build.DocumentationBuilder method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -256,6 +252,8 @@ data-aria-dark="Switch to auto color mode">
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="methoddocs/build.html#sphinx_ape.build.DocumentationBuilder.publish">publish() (sphinx_ape.build.DocumentationBuilder method)</a>
 </li>
+      <li><a href="methoddocs/exceptions.html#sphinx_ape.exceptions.PublishError">PublishError</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -325,6 +323,8 @@ data-aria-dark="Switch to auto color mode">
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="methoddocs/testing.html#sphinx_ape.testing.DocumentationTester.test">test() (sphinx_ape.testing.DocumentationTester method)</a>
 </li>
+      <li><a href="methoddocs/exceptions.html#sphinx_ape.exceptions.TestError">TestError</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -356,5 +356,5 @@ data-aria-dark="Switch to auto color mode">
       <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script data-domain="docs.apeworx.io" defer="defer" src="https://plausible.io/js/script.js"></script>
-      <script src="_static/shibuya.js?v=e2e99575"></script></body>
+      <script src="_static/shibuya.js?v=1d2088d1"></script></body>
 </html>
