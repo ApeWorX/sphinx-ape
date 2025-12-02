@@ -21,19 +21,14 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install Dependencies
-        run: |
-          uv venv
-          uv pip install . --group lint
-
       - name: Run Ruff Lint
-        run: ruff check .
+        run: uv run --group lint ruff check .
 
       - name: Run Ruff Format
-        run: ruff format --check .
+        run: uv run --group lint ruff format --check .
 
       - name: Run mdformat
-        run: mdformat . --check
+        run: uv run --group lint mdformat --check .
 
   type-check:
     runs-on: ubuntu-latest
