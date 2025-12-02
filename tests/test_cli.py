@@ -44,5 +44,5 @@ def test_build_from_pr(runner, cli):
 
 
 def test_publish(runner, cli):
-    result = runner.invoke(cli, ("publish", ".", "--skip-push"))
+    result = runner.invoke(cli, ("publish", ".", "--skip-push", "--repo", "ApeWorX/sphinx-ape"))
     assert result.exit_code == 0

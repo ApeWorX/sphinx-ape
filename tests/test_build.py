@@ -133,7 +133,7 @@ class TestDocumentationBuilder:
         # Ensure built first.
         builder.init()
         builder.build()
-        builder.publish(push=False)
+        builder.publish(repository="ApeWorX/sphinx-ape", push=False)
 
         assert gh_pages_path.is_dir()
         assert nojekyll_file.is_file()
@@ -156,7 +156,7 @@ class TestDocumentationBuilder:
         builder.init()
         # Ensure built first.
         builder.build()
-        builder.publish(push=False)
+        builder.publish(repository="ApeWorX/sphinx-ape", push=False)
         gh_pages_path = temp_path / "gh-pages"
         nojekyll_file = gh_pages_path / ".nojekyll"
         stable_dir = gh_pages_path / "stable"
