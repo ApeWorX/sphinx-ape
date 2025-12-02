@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Optional
 
 from docutils.parsers.rst import directives
 from sphinx.util.docutils import SphinxDirective
@@ -41,7 +40,7 @@ class DynamicTocTree(SphinxDirective):
         return f"{capped_name}-Docs"
 
     @property
-    def plugin_prefix(self) -> Optional[str]:
+    def plugin_prefix(self) -> str | None:
         return self.options.get("plugin-prefix", "").strip()
 
     @property

@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 class TOCTreeSpec(dict[str, list[str]]):
     """
     Specify the structure of the auto-generated TOC-tree
@@ -13,9 +10,9 @@ class TOCTreeSpec(dict[str, list[str]]):
 
     def __init__(
         self,
-        userguides: Optional[list[str]] = None,
-        commands: Optional[list[str]] = None,
-        methoddocs: Optional[list[str]] = None,
+        userguides: list[str] | None = None,
+        commands: list[str] | None = None,
+        methoddocs: list[str] | None = None,
         **kwargs,
     ):
         super().__init__(

@@ -1,6 +1,5 @@
 from functools import cached_property
 from pathlib import Path
-from typing import Optional
 
 from sphinx_ape._utils import get_package_name
 from sphinx_ape.types import TOCTreeSpec
@@ -13,9 +12,9 @@ class Documentation:
 
     def __init__(
         self,
-        base_path: Optional[Path] = None,
-        name: Optional[str] = None,
-        toc_tree_spec: Optional[TOCTreeSpec] = None,
+        base_path: Path | None = None,
+        name: str | None = None,
+        toc_tree_spec: TOCTreeSpec | None = None,
     ) -> None:
         self.base_path = base_path or Path.cwd()
         self._name = name or get_package_name()
@@ -137,7 +136,7 @@ class Documentation:
         quickstart_path.write_text("```{include} ../../README.md\n```\n")
 
     @cached_property
-    def quickstart_name(self) -> Optional[str]:
+    def quickstart_name(self) -> str | None:
         """
         The name of the quickstart guide, if it exists.
         """

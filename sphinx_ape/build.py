@@ -2,7 +2,7 @@ import os
 import shutil
 from enum import Enum
 from pathlib import Path
-from typing import TYPE_CHECKING, Optional, Union
+from typing import TYPE_CHECKING
 
 from sphinx_ape._base import Documentation
 from sphinx_ape._utils import extract_source_url, git, replace_tree, sphinx_build
@@ -30,7 +30,7 @@ class BuildMode(Enum):
     """Build and then push to 'stable/', 'latest/', and the version's release tag folder"""
 
     @classmethod
-    def init(cls, identifier: Optional[Union[str, "BuildMode"]] = None) -> "BuildMode":
+    def init(cls, identifier: "BuildMode | str | None" = None) -> "BuildMode":
         if identifier is None:
             # Default.
             return BuildMode.LATEST
@@ -66,11 +66,11 @@ class DocumentationBuilder(Documentation):
 
     def __init__(
         self,
-        mode: Optional[BuildMode] = None,
-        base_path: Optional[Path] = None,
-        name: Optional[str] = None,
-        pages_branch_name: Optional[str] = None,
-        toc_tree_spec: Optional["TOCTreeSpec"] = None,
+        mode: BuildMode | None = None,
+        base_path: Path | None = None,
+        name: str | None = None,
+        pages_branch_name: str | None = None,
+        toc_tree_spec: "TOCTreeSpec | None" = None,
     ) -> None:
         self.mode = BuildMode.LATEST if mode is None else mode
         super().__init__(base_path, name, toc_tree_spec=toc_tree_spec)
@@ -114,13 +114,13 @@ class DocumentationBuilder(Documentation):
         """
         shutil.rmtree(self.root_build_path, ignore_errors=True)
 
-    def publish(self, repository: Optional[str] = None, push: bool = True):
+    def publish(self, repository: str | None = None, push: bool = True):
         """
         Publish the documentation to GitHub pages.
         Meant to be run in CI/CD on releases.
 
         Args:
-            repository (Optional[str]]): The repository name. Defaults to GitHub env-var
+            repository (str | None): The repository name. Defaults to GitHub env-var
               or extraction from setup file.
             push (bool): Set to ``False`` to skip git add, commit, and push.
 
@@ -133,7 +133,7 @@ class DocumentationBuilder(Documentation):
         except Exception as err:
             raise PublishError(str(err)) from err
 
-    def _publish(self, repository: Optional[str] = None, push: bool = True):
+    def _publish(self, repository: str | None = None, push: bool = True):
         if repository:
             repo_url = f"https://github.com/{repository}"
         else:

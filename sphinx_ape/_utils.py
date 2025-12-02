@@ -3,7 +3,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any
 
 import tomli
 
@@ -27,7 +27,7 @@ def new_dir(path: Path) -> Path:
     return path
 
 
-def sphinx_build(dst_path: Path, source_dir: Union[Path, str]) -> Path:
+def sphinx_build(dst_path: Path, source_dir: Path | str) -> Path:
     path = new_dir(dst_path)
     try:
         subprocess.check_call(["sphinx-build", str(source_dir), str(path)])
@@ -37,14 +37,14 @@ def sphinx_build(dst_path: Path, source_dir: Union[Path, str]) -> Path:
     return path
 
 
-def get_source_url(directory: Optional[Path] = None) -> str:
+def get_source_url(directory: Path | None = None) -> str:
     if env_var := os.getenv("GITHUB_REPO"):
         return f"https://github.com/{env_var}"
 
     return extract_source_url(directory=directory)
 
 
-def extract_source_url(directory: Optional[Path] = None) -> str:
+def extract_source_url(directory: Path | None = None) -> str:
     directory = directory or Path.cwd()
     url = None
     if (directory / "setup.py").is_file():
@@ -55,7 +55,7 @@ def extract_source_url(directory: Optional[Path] = None) -> str:
     return url
 
 
-def _extract_github_url_from_setup_py(file_path: Path) -> Optional[str]:
+def _extract_github_url_from_setup_py(file_path: Path) -> str | None:
     # Check `project_urls`
     project_urls: dict = _extract_key_from_setup_py("project_urls", file_path) or {}  # type: ignore
     if url := project_urls.get("Source"):
@@ -69,11 +69,11 @@ def _extract_github_url_from_setup_py(file_path: Path) -> Optional[str]:
     return None
 
 
-def _extract_name_from_setup_py(file_path: Path) -> Optional[str]:
+def _extract_name_from_setup_py(file_path: Path) -> str | None:
     return _extract_key_from_setup_py("name", file_path)
 
 
-def _extract_key_from_setup_py(key: str, file_path: Path) -> Optional[Any]:
+def _extract_key_from_setup_py(key: str, file_path: Path) -> Any | None:
     if not (setup_content := file_path.read_text()):
         return None
     elif not (parsed_content := ast.parse(setup_content)):
@@ -97,7 +97,7 @@ def _extract_key_from_setup_py(key: str, file_path: Path) -> Optional[Any]:
     return None
 
 
-def _extract_name_from_pyproject_toml(file_path: Path) -> Optional[str]:
+def _extract_name_from_pyproject_toml(file_path: Path) -> str | None:
     """Extract package name from pyproject.toml."""
     with open(file_path, "rb") as file:
         pyproject = tomli.load(file)
@@ -119,7 +119,7 @@ def get_package_name() -> str:
     return extract_package_name()
 
 
-def extract_package_name(directory: Optional[Path] = None) -> str:
+def extract_package_name(directory: Path | None = None) -> str:
     """Detect and extract the package name from the project files."""
     directory = directory or Path.cwd()
     pkg_name = None
