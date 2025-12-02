@@ -5,7 +5,7 @@ The purpose of this plugin to share code for generating documentation across all
 
 ## Dependencies
 
-- [python3](https://www.python.org/downloads) version 3.9 up to 3.12.
+- [python3](https://www.python.org/downloads) version 3.10 up to 3.14.
 
 ## Install
 
@@ -95,7 +95,7 @@ You can also specify the guides in a list pattern:
 ```rst
 .. dynamic-toc-tree::
     :userguides:
-      - quickstart 
+      - quickstart
       - guide0
       - guide1
       - final
