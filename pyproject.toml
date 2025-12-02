@@ -63,9 +63,7 @@ lint = [
     "mdformat-pyproject>=0.0.2",  # Allows configuring in pyproject.toml
 ]
 release = [  # `release` GitHub Action job uses this
-    "setuptools",  # Installation tool
-    "wheel",  # Packaging tool
-    "twine",  # Package upload tool
+    "build",  # Package build tool
 ]
 dev = [
     "commitizen",  # Manage commits and publishing releases
