@@ -82,9 +82,7 @@ class DocumentationBuilder(Documentation):
 
         Example:
             >>> builder = DocumentationBuilder(
-            ...   mode=BuildMode.LATEST,
-            ...   base_path=Path.cwd(),
-            ...   name="sphinx-ape"
+            ...     mode=BuildMode.LATEST, base_path=Path.cwd(), name="sphinx-ape"
             ... )
             >>> builder.build()
 
