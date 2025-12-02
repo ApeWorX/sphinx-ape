@@ -41,7 +41,7 @@ runs:
     - name: Commit and publish documentation changes to gh-pages branch
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release' }}
       run: |
-        sphinx-ape publish . --skip-push
+        sphinx-ape publish . --skip-push --repo ${{ github.repository }}
         cd gh-pages
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
