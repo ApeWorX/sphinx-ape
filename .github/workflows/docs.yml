@@ -16,15 +16,14 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
-    - name: Setup Python
-      uses: actions/setup-python@v5
+    - uses: astral-sh/setup-uv@v7
       with:
         python-version: "3.10"
 
     # NOTE: This also serves as a test for the action.
-    - name: Docs
+    - name: Build and Publish Docs
       uses: ./
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
