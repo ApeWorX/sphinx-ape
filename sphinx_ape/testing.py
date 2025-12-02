@@ -33,7 +33,7 @@ class DocumentationTester(Documentation):
         """
         self._run_tests()
         output = self.doctest_output_file.read_text() if self.doctest_output_file.is_file() else ""
-        if "0 failed" in output or "0 tests" in output:
+        if "Test passed" in output or "0 tests" in output:
             # Either no failures or no tests ran.
             return
 
