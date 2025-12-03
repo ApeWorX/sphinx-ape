@@ -33,8 +33,12 @@ def package_name_option():
     )
 
 
+def base_path_argument():
+    return click.argument("base_path", type=Path, default=".")
+
+
 @cli.command()
-@click.argument("base_path", type=Path)
+@base_path_argument()
 def init(base_path):
     """
     Initialize documentation structure
@@ -45,7 +49,7 @@ def init(base_path):
 
 
 @cli.command()
-@click.argument("base_path", type=Path)
+@base_path_argument()
 @build_mode_option()
 @package_name_option()
 def build(base_path, mode, package_name):
@@ -70,7 +74,7 @@ def build(base_path, mode, package_name):
 
 
 @cli.command()
-@click.argument("base_path", type=Path)
+@base_path_argument()
 @click.option("--host", default="127.0.0.1")
 @click.option("--port", default=1337)
 @click.option("--open", is_flag=True, help="Open page in browser")
@@ -116,7 +120,7 @@ def serve(base_path, host, port, open):
 
 
 @cli.command()
-@click.argument("base_path", type=Path)
+@base_path_argument()
 def test(base_path):
     """
     Run doc-tests
@@ -130,7 +134,7 @@ def test(base_path):
 
 
 @cli.command()
-@click.argument("base_path", type=Path)
+@base_path_argument()
 @build_mode_option()
 @click.option(
     "--repo",
@@ -155,7 +159,7 @@ def publish(base_path, mode, repo, skip_push):
 
 
 @cli.command()
-@click.argument("base_path", type=Path)
+@base_path_argument()
 def clean(base_path):
     """
     Delete build artifacts
