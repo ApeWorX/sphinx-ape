@@ -165,11 +165,9 @@ documentation.</p>
 <dd><p>Build the documentation.</p>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">builder</span> <span class="o">=</span> <span class="n">DocumentationBuilder</span><span class="p">(</span>
-</span><span data-line="2"><span class="gp">... </span>  <span class="n">mode</span><span class="o">=</span><span class="n">BuildMode</span><span class="o">.</span><span class="n">LATEST</span><span class="p">,</span>
-</span><span data-line="3"><span class="gp">... </span>  <span class="n">base_path</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">(),</span>
-</span><span data-line="4"><span class="gp">... </span>  <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sphinx-ape&quot;</span>
-</span><span data-line="5"><span class="gp">... </span><span class="p">)</span>
-</span><span data-line="6"><span class="gp">&gt;&gt;&gt; </span><span class="n">builder</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</span><span data-line="2"><span class="gp">... </span>    <span class="n">mode</span><span class="o">=</span><span class="n">BuildMode</span><span class="o">.</span><span class="n">LATEST</span><span class="p">,</span> <span class="n">base_path</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sphinx-ape&quot;</span>
+</span><span data-line="3"><span class="gp">... </span><span class="p">)</span>
+</span><span data-line="4"><span class="gp">&gt;&gt;&gt; </span><span class="n">builder</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </span></pre></div>
 </div>
 <dl class="field-list simple">
@@ -194,7 +192,7 @@ Meant to be run in CI/CD on releases.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>repository</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>]</em>) – The repository name. Defaults to GitHub env-var
+<li><p><strong>repository</strong> (<em>str</em><em> | </em><em>None</em>) – The repository name. Defaults to GitHub env-var
 or extraction from setup file.</p></li>
 <li><p><strong>push</strong> (<em>bool</em>) – Set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to skip git add, commit, and push.</p></li>
 </ul>
