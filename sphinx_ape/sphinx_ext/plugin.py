@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import date
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -24,7 +25,7 @@ def setup(app: "Sphinx"):
     # Configure project and other one-off items.
     package_name = get_package_name()
     app.config.project = package_name
-    app.config.copyright = "2025, ApeWorX LTD"
+    app.config.copyright = f"{date.today().year}, ApeWorX LTD"
     app.config.author = "ApeWorX Team"
 
     app.config.exclude_patterns = list(
