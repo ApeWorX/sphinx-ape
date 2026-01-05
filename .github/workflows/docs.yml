@@ -22,7 +22,7 @@ jobs:
       with:
         python-version: "3.10"
 
-    - run: uv sync  # Is it's own docs dependencies!
+    - run: uv venv --python 3.10 && uv sync --python 3.10  # Is it's own docs dependencies!
 
     # NOTE: This also serves as a test for the action.
     - name: Build and Publish Docs
