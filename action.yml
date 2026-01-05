@@ -26,6 +26,7 @@ runs:
         
     - name: Install tool (if not already)
       run: uv pip install sphinx-ape
+      shell: bash
     
     - name: Build Docs
       run: |
