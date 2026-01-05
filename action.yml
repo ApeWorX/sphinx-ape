@@ -18,30 +18,20 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ inputs.python-version }}
-
-    - name: Install
-      run: |
-        pip install sphinx-ape
-      shell: bash
-
     - name: Build Docs
       run: |
-        sphinx-ape build . --mode "${{ github.event_name }}"
+        sphinx-ape build --mode "${{ github.event_name }}"
       shell: bash
 
     - name: Doctesting
       run: |
-        sphinx-ape test .
+        sphinx-ape test
       shell: bash
 
     - name: Commit and publish documentation changes to gh-pages branch
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release' }}
       run: |
-        sphinx-ape publish . --skip-push --repo ${{ github.repository }}
+        sphinx-ape publish --skip-push --repo ${{ github.repository }}
         cd gh-pages
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
