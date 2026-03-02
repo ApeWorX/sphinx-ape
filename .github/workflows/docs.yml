@@ -4,9 +4,10 @@ on:
   push:
     branches: [main]
   release:
-    types: [released]
+    types: [released, edited]
   pull_request:
     types: [opened, synchronize]
+  workflow_dispatch:
 
 jobs:
   docs:
@@ -22,7 +23,7 @@ jobs:
       with:
         python-version: "3.10"
 
-    - run: uv venv --python 3.10 && uv sync --python 3.10  # Is it's own docs dependencies!
+    - run: uv venv --python 3.10 && uv sync --python 3.10 --group docs  # Is it's own docs dependencies!
 
     - name: Add venv to PATH
       run: echo "${{ github.workspace }}/.venv/bin" >> $GITHUB_PATH
@@ -33,3 +34,5 @@ jobs:
       uses: ./
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        SPHINX_GITHUB_CHANGELOG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
