@@ -34,7 +34,7 @@ requires-python = ">=3.10,<4"
 dependencies = [
     "click>=8.1.7,<9",  # Script controller framework
     "tomli>=1.2.3,<3",  # For parsing pyproject.toml file
-    "shibuya",  # Sphinx theme
+    "shibuya>=2025.12.17",  # Sphinx theme (requires fix for AI dropdown links)
     "pygments>=2.17.0,<3",  # Needed for the Vyper lexer
     "myst-parser>=4.0.0,<5",  # Parse markdown docs
     "sphinx-click>=6.0.0,<7",  # For documenting CLI
