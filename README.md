@@ -101,6 +101,16 @@ You can also specify the guides in a list pattern:
       - final
 ```
 
+## Changelog
+
+`sphinx-ape` generates a `docs/changelog.md` page from the repository's GitHub Releases each time the docs build, groups entries by conventional-commit type (`feat:`, `fix:`, ...), and the `dynamic-toc-tree` adds it automatically under a "Project" caption.
+
+- The repository is detected from `GITHUB_REPOSITORY`, the `origin` git remote, or `sphinx_ape_changelog_repo = "owner/name"` in `conf.py`.
+- `GITHUB_TOKEN` is used when set (recommended in CI, to avoid rate limits).
+- If fetching fails, the last cached result (`docs/_build/.changelog-cache.json`) is used, otherwise a placeholder linking to the GitHub Releases page.
+- Set `SPHINX_APE_OFFLINE=1` to skip the network, or `SPHINX_APE_CHANGELOG_JSON=path/to/releases.json` to render from a file.
+- A hand-written `docs/changelog.md` (without the generated marker) is left untouched. Disable entirely with `sphinx_ape_changelog = False` in `conf.py`.
+
 ## GitHub Action
 
 This GitHub action is meant for building the documentation in both core Ape as well any Ape plugin.

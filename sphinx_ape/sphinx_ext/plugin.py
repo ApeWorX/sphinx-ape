@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 from sphinx.util import logging
 
 from sphinx_ape._utils import get_package_name
+from sphinx_ape.sphinx_ext import changelog
 from sphinx_ape.sphinx_ext.directives import DynamicTocTree
 
 if TYPE_CHECKING:
@@ -102,6 +103,9 @@ def setup(app: "Sphinx"):
         "__ape_extra_attributes__",
     )
     app.config.autodoc_default_options = {"exclude-members": ", ".join(exclude_members)}
+
+    # Generate the changelog page from GitHub Releases.
+    changelog.setup(app)
 
     # Add the directive enabling the dynamic-TOC.
     app.add_directive("dynamic-toc-tree", DynamicTocTree)

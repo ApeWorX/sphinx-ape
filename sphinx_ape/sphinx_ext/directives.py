@@ -5,6 +5,7 @@ from sphinx.util.docutils import SphinxDirective
 
 from sphinx_ape.build import DocumentationBuilder
 from sphinx_ape.exceptions import BuildError
+from sphinx_ape.sphinx_ext.changelog import CHANGELOG_FILENAME
 from sphinx_ape.types import TOCTreeSpec
 
 
@@ -83,6 +84,9 @@ class DynamicTocTree(SphinxDirective):
         else:
             # Plugin or regular package.
             sections["Python Reference"] = methoddocs
+
+        if (self._base_path / CHANGELOG_FILENAME).is_file():
+            sections["Project"] = [Path(CHANGELOG_FILENAME).stem]
 
         # Ensure TOC is not empty (no docs?).
         if not sections or not any(len(x) for x in sections.values()):
