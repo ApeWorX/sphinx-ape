@@ -101,6 +101,7 @@ def render_release(release: dict[str, Any], repo: str) -> list[str]:
             rest = re.sub(
                 r"\(#(\d+)\)", rf"([#\1](https://github.com/{repo}/pull/\1))", match["rest"]
             )
+            rest = " ".join(rest.split())
             entry = f"- {'**BREAKING** ' if match['breaking'] else ''}{rest}"
             if kind in _SECTION_KEYS:
                 groups.setdefault(kind, []).append(entry)
@@ -109,7 +110,7 @@ def render_release(release: dict[str, Any], repo: str) -> list[str]:
 
         elif line.strip().startswith(("- ", "* ")) and "@" in line:
             # Non-conventional PR line from Release Drafter.
-            other.append(line.strip())
+            other.append(f"- {' '.join(line.strip()[2:].split())}")
 
     tag = release.get("tag_name") or release.get("name") or "unknown"
     date = (release.get("published_at") or "")[:10]
@@ -143,7 +144,26 @@ def render_changelog(releases: list[dict[str, Any]] | None, repo: str | None) ->
     for release in published:
         lines.extend(render_release(release, repo or ""))
 
-    return "\n".join(lines).rstrip() + "\n"
+    content = "\n".join(lines).rstrip() + "\n"
+    return _mdformat(content)
+
+
+def _mdformat(content: str) -> str:
+    """
+    Normalize with ``mdformat`` (when installed) so the generated file passes
+    ``mdformat --check``. Uses whichever mdformat parser extensions are installed.
+    """
+    try:
+        import mdformat
+        from mdformat.plugins import PARSER_EXTENSIONS
+    except ImportError:
+        return content
+
+    try:
+        return mdformat.text(content, extensions=PARSER_EXTENSIONS.keys())
+    except Exception as err:
+        logger.warning(f"Unable to mdformat changelog: {err}")
+        return content
 
 
 def _load_releases(repo: str | None) -> list[dict[str, Any]] | None:

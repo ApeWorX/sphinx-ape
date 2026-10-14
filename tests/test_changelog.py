@@ -67,6 +67,31 @@ def test_render_changelog_sorted_and_skips_drafts():
     assert "v0.3.0" not in text
 
 
+def test_generated_output_is_mdformat_clean():
+    mdformat = pytest.importorskip("mdformat")
+    from mdformat.plugins import PARSER_EXTENSIONS
+
+    tricky = {
+        "tag_name": "v0.0.1",
+        "published_at": "2023-12-01T00:00:00Z",
+        "body": (
+            "* feat: use `foo_bar` and <Tag>   spacing @a (#10)\n"
+            "- fix!: snake_case_name & stuff_ @b (#11)\n"
+            "* Bump thing from 1 to 2 @dependabot (#12)\n"
+        ),
+    }
+    outputs = [
+        render_changelog([*RELEASES, tricky], "ApeWorX/ape-foo"),
+        render_changelog(None, "ApeWorX/ape-foo"),
+        render_changelog([], None),
+    ]
+    assert "**BREAKING**" in outputs[0]
+    assert "(https://github.com/ApeWorX/ape-foo/pull/2)" in outputs[0]
+    assert "See [GitHub Releases]" in outputs[1]
+    for text in outputs:
+        assert mdformat.text(text, extensions=PARSER_EXTENSIONS.keys()) == text
+
+
 def test_render_changelog_placeholder():
     text = render_changelog(None, "ApeWorX/ape-foo")
     assert "https://github.com/ApeWorX/ape-foo/releases" in text
