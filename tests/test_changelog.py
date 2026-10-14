@@ -1,4 +1,5 @@
 import json
+from typing import Any
 from types import SimpleNamespace
 
 import pytest
@@ -12,7 +13,7 @@ from sphinx_ape.sphinx_ext.changelog import (
     render_release,
 )
 
-RELEASES = [
+RELEASES: list[dict[str, Any]] = [
     {
         "tag_name": "v0.1.0",
         "html_url": "https://github.com/ApeWorX/ape-foo/releases/tag/v0.1.0",
