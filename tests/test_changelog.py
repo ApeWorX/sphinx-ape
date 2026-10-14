@@ -87,22 +87,21 @@ def test_get_repository_from_git_remote(app, mocker):
     assert get_repository(app) == "ApeWorX/ape-foo"
 
 
-def test_generate_fetches_and_caches(app, temp_path, mocker, monkeypatch):
+def test_generate_fetches(app, temp_path, mocker, monkeypatch):
     monkeypatch.setenv("GITHUB_REPOSITORY", "ApeWorX/ape-foo")
     fetch = mocker.patch.object(changelog, "fetch_releases", return_value=RELEASES)
     generate_changelog(app)
     fetch.assert_called_once_with("ApeWorX/ape-foo")
     assert "v0.2.0" in (temp_path / "changelog.md").read_text()
-    assert (temp_path / "_build" / ".changelog-cache.json").is_file()
+    assert not (temp_path / "_build").exists()  # No cache is written.
 
-    # Fetch failure falls back to the cache.
+    # Fetch failure falls back to the placeholder.
     fetch.side_effect = OSError("offline")
-    (temp_path / "changelog.md").unlink()
     generate_changelog(app)
-    assert "v0.2.0" in (temp_path / "changelog.md").read_text()
+    assert "See [GitHub Releases]" in (temp_path / "changelog.md").read_text()
 
 
-def test_generate_offline_without_cache(app, temp_path, mocker, monkeypatch):
+def test_generate_offline(app, temp_path, mocker, monkeypatch):
     monkeypatch.setenv("GITHUB_REPOSITORY", "ApeWorX/ape-foo")
     monkeypatch.setenv("SPHINX_APE_OFFLINE", "1")
     fetch = mocker.patch.object(changelog, "fetch_releases")

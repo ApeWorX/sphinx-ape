@@ -10,8 +10,7 @@ Data sources, in order:
 1. ``SPHINX_APE_CHANGELOG_JSON``: path to a JSON file of releases (offline use).
 2. The GitHub REST API (skipped when ``SPHINX_APE_OFFLINE=1``), authenticated
    with ``GITHUB_TOKEN`` when it is set.
-3. A cache of the last successful fetch (``docs/_build/.changelog-cache.json``).
-4. A placeholder page linking to the GitHub Releases page.
+3. A placeholder page linking to the GitHub Releases page.
 
 The build never fails because of the changelog.
 """
@@ -147,25 +146,15 @@ def render_changelog(releases: list[dict[str, Any]] | None, repo: str | None) ->
     return "\n".join(lines).rstrip() + "\n"
 
 
-def _load_releases(repo: str | None, cache_file: Path) -> list[dict[str, Any]] | None:
+def _load_releases(repo: str | None) -> list[dict[str, Any]] | None:
     if json_path := os.environ.get("SPHINX_APE_CHANGELOG_JSON"):
         return json.loads(Path(json_path).read_text())
 
     if repo and os.environ.get("SPHINX_APE_OFFLINE", "").lower() not in ("1", "true", "yes"):
         try:
-            releases = fetch_releases(repo)
+            return fetch_releases(repo)
         except Exception as err:
             logger.warning(f"Unable to fetch GitHub releases for '{repo}': {err}")
-        else:
-            cache_file.parent.mkdir(parents=True, exist_ok=True)
-            cache_file.write_text(json.dumps(releases))
-            return releases
-
-    if cache_file.is_file():
-        try:
-            return json.loads(cache_file.read_text())
-        except ValueError:
-            pass
 
     return None
 
@@ -183,7 +172,7 @@ def generate_changelog(app: "Sphinx"):
 
     repo = get_repository(app)
     try:
-        releases = _load_releases(repo, srcdir / "_build" / ".changelog-cache.json")
+        releases = _load_releases(repo)
         content = render_changelog(releases, repo)
     except Exception as err:
         logger.warning(f"Unable to generate changelog: {err}")

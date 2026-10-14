@@ -107,7 +107,7 @@ You can also specify the guides in a list pattern:
 
 - The repository is detected from `GITHUB_REPOSITORY`, the `origin` git remote, or `sphinx_ape_changelog_repo = "owner/name"` in `conf.py`.
 - `GITHUB_TOKEN` is used when set (recommended in CI, to avoid rate limits).
-- If fetching fails, the last cached result (`docs/_build/.changelog-cache.json`) is used, otherwise a placeholder linking to the GitHub Releases page.
+- If fetching fails (or is skipped), a placeholder linking to the GitHub Releases page is rendered instead.
 - Set `SPHINX_APE_OFFLINE=1` to skip the network, or `SPHINX_APE_CHANGELOG_JSON=path/to/releases.json` to render from a file.
 - A hand-written `docs/changelog.md` (without the generated marker) is left untouched. Disable entirely with `sphinx_ape_changelog = False` in `conf.py`.
 
