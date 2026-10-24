@@ -7,7 +7,7 @@
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
   </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e1a1ceaf" />
-    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=2ceb65ce" />
     <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,8 @@
   --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
 }
 </style>
-    <meta property="og:type" content="website"/>
+    
+  <meta property="og:type" content="website"/>
   <meta property="og:url" content="sphinx-ape/methoddocs/build.html"/>
   <meta property="og:title" content="Builder APIs"/>
     <meta name="twitter:card" content="summary"/>
@@ -87,15 +88,15 @@ data-aria-dark="Switch to auto color mode">
     </button>
     <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
 <li><a class="reference internal" href="#sphinx_ape.build.BuildMode"><code class="docutils literal notranslate"><span class="pre">BuildMode</span></code></a><ul>
-<li><a class="reference internal" href="#sphinx_ape.build.BuildMode.LATEST"><code class="docutils literal notranslate">LATEST</span></code></a></li>
-<li><a class="reference internal" href="#sphinx_ape.build.BuildMode.MERGE_TO_MAIN"><code class="docutils literal notranslate">MERGE_TO_MAIN</span></code></a></li>
-<li><a class="reference internal" href="#sphinx_ape.build.BuildMode.RELEASE"><code class="docutils literal notranslate">RELEASE</span></code></a></li>
+<li><a class="reference internal" href="#sphinx_ape.build.BuildMode.LATEST"><code class="docutils literal notranslate"><span class="pre">BuildMode.LATEST</span></code></a></li>
+<li><a class="reference internal" href="#sphinx_ape.build.BuildMode.MERGE_TO_MAIN"><code class="docutils literal notranslate"><span class="pre">BuildMode.MERGE_TO_MAIN</span></code></a></li>
+<li><a class="reference internal" href="#sphinx_ape.build.BuildMode.RELEASE"><code class="docutils literal notranslate"><span class="pre">BuildMode.RELEASE</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sphinx_ape.build.DocumentationBuilder"><code class="docutils literal notranslate"><span class="pre">DocumentationBuilder</span></code></a><ul>
-<li><a class="reference internal" href="#sphinx_ape.build.DocumentationBuilder.build"><code class="docutils literal notranslate">build()</span></code></a></li>
-<li><a class="reference internal" href="#sphinx_ape.build.DocumentationBuilder.clean"><code class="docutils literal notranslate">clean()</span></code></a></li>
-<li><a class="reference internal" href="#sphinx_ape.build.DocumentationBuilder.publish"><code class="docutils literal notranslate">publish()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx_ape.build.DocumentationBuilder.build"><code class="docutils literal notranslate"><span class="pre">DocumentationBuilder.build()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx_ape.build.DocumentationBuilder.clean"><code class="docutils literal notranslate"><span class="pre">DocumentationBuilder.clean()</span></code></a></li>
+<li><a class="reference internal" href="#sphinx_ape.build.DocumentationBuilder.publish"><code class="docutils literal notranslate"><span class="pre">DocumentationBuilder.publish()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -164,26 +165,26 @@ data-aria-dark="Switch to auto color mode">
   </div>
 </div><article class="yue" role="main">
           <section id="module-sphinx_ape.build">
-<span id="builder-apis"></span><h1>Builder APIs<a class="headerlink" href="#module-sphinx_ape.build" title="Link to this heading"></a></h1>
+<span id="builder-apis"></span><h1>Builder APIs<a class="headerlink" href="#module-sphinx_ape.build" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="sphinx_ape.build.BuildMode">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_ape.build.</span></span><span class="sig-name descname"><span class="pre">BuildMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.BuildMode" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_ape.build.</span></span><span class="sig-name descname"><span class="pre">BuildMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.BuildMode" title="Link to this definition">#</a></dt>
 <dd><p>An enumeration.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sphinx_ape.build.BuildMode.LATEST">
-<span class="sig-name descname"><span class="pre">LATEST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sphinx_ape.build.BuildMode.LATEST" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">LATEST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sphinx_ape.build.BuildMode.LATEST" title="Link to this definition">#</a></dt>
 <dd><p>Build and then push to ‘latest/’</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sphinx_ape.build.BuildMode.MERGE_TO_MAIN">
-<span class="sig-name descname"><span class="pre">MERGE_TO_MAIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#sphinx_ape.build.BuildMode.MERGE_TO_MAIN" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">MERGE_TO_MAIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#sphinx_ape.build.BuildMode.MERGE_TO_MAIN" title="Link to this definition">#</a></dt>
 <dd><p>Build and then push to ‘stable/’</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="sphinx_ape.build.BuildMode.RELEASE">
-<span class="sig-name descname"><span class="pre">RELEASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#sphinx_ape.build.BuildMode.RELEASE" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">RELEASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#sphinx_ape.build.BuildMode.RELEASE" title="Link to this definition">#</a></dt>
 <dd><p>Build and then push to ‘stable/’, ‘latest/’, and the version’s release tag folder</p>
 </dd></dl>
 
@@ -191,16 +192,16 @@ data-aria-dark="Switch to auto color mode">
 
 <dl class="py class">
 <dt class="sig sig-object py" id="sphinx_ape.build.DocumentationBuilder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_ape.build.</span></span><span class="sig-name descname"><span class="pre">DocumentationBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sphinx_ape.build.BuildMode" title="sphinx_ape.build.BuildMode"><span class="pre">BuildMode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pages_branch_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toc_tree_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TOCTreeSpec</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.DocumentationBuilder" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sphinx_ape.build.</span></span><span class="sig-name descname"><span class="pre">DocumentationBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sphinx_ape.build.BuildMode" title="sphinx_ape.build.BuildMode"><span class="pre">BuildMode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pages_branch_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toc_tree_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TOCTreeSpec</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.DocumentationBuilder" title="Link to this definition">#</a></dt>
 <dd><p>Builds either “latest”, or “stable” / “release”
 documentation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="sphinx_ape.build.DocumentationBuilder.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.DocumentationBuilder.build" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.DocumentationBuilder.build" title="Link to this definition">#</a></dt>
 <dd><p>Build the documentation.</p>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="gp">&gt;&gt;&gt; </span><span class="n">builder</span> <span class="o">=</span> <span class="n">DocumentationBuilder</span><span class="p">(</span>
-</span><span data-line="2"><span class="gp">... </span>    <span class="n">mode</span><span class="o">=</span><span class="n">BuildMode</span><span class="o">.</span><span class="n">LATEST</span><span class="p">,</span> <span class="n">base_path</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sphinx-ape&quot;</span>
+</span><span data-line="2"><span class="gp">... </span>    <span class="n">mode</span><span class="o">=</span><span class="n">BuildMode</span><span class="o">.</span><span class="n">LATEST</span><span class="p">,</span> <span class="n">base_path</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">"sphinx-ape"</span>
 </span><span data-line="3"><span class="gp">... </span><span class="p">)</span>
 </span><span data-line="4"><span class="gp">&gt;&gt;&gt; </span><span class="n">builder</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
 </span></pre></div>
@@ -215,13 +216,13 @@ documentation.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sphinx_ape.build.DocumentationBuilder.clean">
-<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.DocumentationBuilder.clean" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.DocumentationBuilder.clean" title="Link to this definition">#</a></dt>
 <dd><p>Clean build directories.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="sphinx_ape.build.DocumentationBuilder.publish">
-<span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">push</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.DocumentationBuilder.publish" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repository</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">push</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sphinx_ape.build.DocumentationBuilder.publish" title="Link to this definition">#</a></dt>
 <dd><p>Publish the documentation to GitHub pages.
 Meant to be run in CI/CD on releases.</p>
 <dl class="field-list simple">
@@ -289,5 +290,5 @@ or extraction from setup file.</p></li>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script data-domain="docs.apeworx.io" defer="defer" src="https://plausible.io/js/script.js"></script>
-      <script src="../_static/shibuya.js?v=cac61aee"></script></body>
+      <script src="../_static/shibuya.js?v=50760d75"></script></body>
 </html>

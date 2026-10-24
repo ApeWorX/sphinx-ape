@@ -7,7 +7,7 @@
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
   </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e1a1ceaf" />
-    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=2ceb65ce" />
     <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,8 @@
   --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
 }
 </style>
-    <meta property="og:type" content="website"/>
+    
+  <meta property="og:type" content="website"/>
   <meta property="og:url" content="sphinx-ape/userguides/quickstart.html"/>
   <meta property="og:title" content="Overview"/>
     <meta name="twitter:card" content="summary"/>
@@ -159,17 +160,17 @@ data-aria-dark="Switch to auto color mode">
   </div>
 </div><article class="yue" role="main">
           <section id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">sphinx-ape</span></code> is a documentation plugin for the Sphinx framework.
 The purpose of this plugin to share code for generating documentation across all ApeWorX repositories.</p>
 <section id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.python.org/downloads">python3</a> version 3.10 up to 3.14.</p></li>
 </ul>
 </section>
 <section id="install">
-<h2>Install<a class="headerlink" href="#install" title="Link to this heading"></a></h2>
+<h2>Install<a class="headerlink" href="#install" title="Link to this heading">#</a></h2>
 <p>Install the package from GitHub:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span data-line="1">pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/ApeWorX/sphinx-ape.git@main
 </span></pre></div>
@@ -178,7 +179,7 @@ The purpose of this plugin to share code for generating documentation across all
 <p>Try <code class="docutils literal notranslate"><span class="pre">sphinx-ape</span> <span class="pre">--help</span></code> to check if it’s installed.</p>
 </section>
 <section id="quick-usage">
-<h2>Quick Usage<a class="headerlink" href="#quick-usage" title="Link to this heading"></a></h2>
+<h2>Quick Usage<a class="headerlink" href="#quick-usage" title="Link to this heading">#</a></h2>
 <p>To use this sphinx plugin, first generate the docs structure (ran from your project directory):</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span data-line="1">sphinx-ape<span class="w"> </span>init<span class="w"> </span>.
 </span></pre></div>
@@ -217,7 +218,7 @@ For example, clone this repo and install it using <code class="docutils literal 
 </div>
 </section>
 <section id="auto-toc-tree">
-<h2>Auto-TOC Tree<a class="headerlink" href="#auto-toc-tree" title="Link to this heading"></a></h2>
+<h2>Auto-TOC Tree<a class="headerlink" href="#auto-toc-tree" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">sphinx-ape</span> <span class="pre">init</span></code> command creates an <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file.
 This file represents the table of contents for the docs site.
 Any files not included in the TOC are not included in the documentation.
@@ -242,7 +243,7 @@ Also use this feature to control the ordering of the guides; otherwise the defau
 </div>
 </section>
 <section id="github-action">
-<h2>GitHub Action<a class="headerlink" href="#github-action" title="Link to this heading"></a></h2>
+<h2>GitHub Action<a class="headerlink" href="#github-action" title="Link to this heading">#</a></h2>
 <p>This GitHub action is meant for building the documentation in both core Ape as well any Ape plugin.
 The action may also work for regular Python packages with a documentation-strategy similar to Ape.</p>
 <p>There are three GitHub events that trigger this action:</p>
@@ -255,7 +256,7 @@ The GitHub action will commit these changes to the ‘gh-pages’ branch.</p></l
 </ol>
 </section>
 <section id="github-pages">
-<h2>GitHub Pages<a class="headerlink" href="#github-pages" title="Link to this heading"></a></h2>
+<h2>GitHub Pages<a class="headerlink" href="#github-pages" title="Link to this heading">#</a></h2>
 <p>To set up this action with GitHub pages for the release-workflow to work, first create a branch named <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> and push it to GitHub.
 Then, delete everything besides a simple <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file, and the <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> file.
 Once that is all pushed, verify on the Pages tab that a site was made for you.
@@ -266,7 +267,7 @@ Now, on merges to main and releases, this site should be updated (if you are usi
 </div>
 </section>
 <section id="development">
-<h2>Development<a class="headerlink" href="#development" title="Link to this heading"></a></h2>
+<h2>Development<a class="headerlink" href="#development" title="Link to this heading">#</a></h2>
 <p>Please see the <a class="reference external" href="CONTRIBUTING.md">contributing guide</a> to learn more how to contribute to this project.
 Comments, questions, criticisms and pull requests are welcomed.</p>
 </section>
@@ -318,5 +319,5 @@ Comments, questions, criticisms and pull requests are welcomed.</p>
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script data-domain="docs.apeworx.io" defer="defer" src="https://plausible.io/js/script.js"></script>
-      <script src="../_static/shibuya.js?v=cac61aee"></script></body>
+      <script src="../_static/shibuya.js?v=50760d75"></script></body>
 </html>
