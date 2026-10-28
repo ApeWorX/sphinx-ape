@@ -7,6 +7,11 @@ import click
 from sphinx_ape._utils import get_package_name
 from sphinx_ape.build import BuildMode, DocumentationBuilder
 from sphinx_ape.exceptions import BuildError, PublishError, TestError
+from sphinx_ape.opt_in import (
+    ensure_docs_dependency_group,
+    ensure_docs_workflow,
+    print_pages_checklist,
+)
 from sphinx_ape.testing import DocumentationTester
 
 
@@ -39,13 +44,50 @@ def base_path_argument():
 
 @cli.command()
 @base_path_argument()
-def init(base_path):
+@click.option(
+    "--ci/--no-ci",
+    default=False,
+    help="Write .github/workflows/docs.yaml if missing (does not overwrite).",
+)
+@click.option(
+    "--deps/--no-deps",
+    default=False,
+    help="Ensure pyproject.toml [dependency-groups] docs includes sphinx-ape.",
+)
+@click.option(
+    "--full",
+    is_flag=True,
+    help="Scaffold docs, write CI workflow, ensure deps, and print Pages checklist.",
+)
+@click.option(
+    "--workflow-path",
+    type=Path,
+    default=None,
+    help="Override path for the docs workflow (default: .github/workflows/docs.yaml).",
+)
+def init(base_path, ci, deps, full, workflow_path):
     """
     Initialize documentation structure
+
+    Bare ``sphinx-ape init`` only scaffolds docs/ (unchanged). Use ``--ci``,
+    ``--deps``, or ``--full`` to opt a plugin into shared docs CI.
     """
+    if full:
+        ci = True
+        deps = True
+
     # For this command, force the user to be in that dir.
     builder = _create_builder(base_path=base_path)
     builder.init()
+
+    if ci:
+        ensure_docs_workflow(Path(base_path), workflow_path=workflow_path)
+
+    if deps:
+        ensure_docs_dependency_group(Path(base_path))
+
+    if ci or full:
+        print_pages_checklist()
 
 
 @cli.command()
