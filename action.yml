@@ -7,13 +7,15 @@ branding:
 
 inputs:
   python-version:
+    # Unused by this composite today (callers run setup-uv themselves). Kept for
+    # forward-compat / existing workflow inputs; do not remove without a major bump.
     description: 'Override version of python, defaults to 3.10'
     required: false
     default: '3.10'
   github-token:
-    description: 'Token for pushing to GitHub'
+    description: 'Token for pushing to GitHub and authenticated API calls during the build'
     required: false
-    default: '3.10'
+    default: ${{ github.token }}
 
 runs:
   using: 'composite'
@@ -22,11 +24,15 @@ runs:
       run: |
         sphinx-ape build --mode "${{ github.event_name }}"
       shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
 
     - name: Doctesting
       run: |
         sphinx-ape test
       shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
 
     - name: Commit and publish documentation changes to gh-pages branch
       if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release' }}

@@ -71,6 +71,37 @@ To run your doc-tests, use the `sphinx-ape test` command:
 sphinx-ape test .
 ```
 
+## Add docs to a plugin
+
+Documentation is **opt-in** for ApeWorX plugins and packages. Many plugins already list `sphinx-ape` under `[dependency-groups] docs` but still need a `docs/` tree and a thin Docs workflow.
+
+Recommended one-shot from the plugin repo root:
+
+```sh
+# 1. Ensure the docs group exists (or let --deps / --full add it)
+# [dependency-groups]
+# docs = ["sphinx-ape"]
+
+uv sync --group docs
+sphinx-ape init --full .
+```
+
+`sphinx-ape init --full` is equivalent to scaffolding `docs/` plus:
+
+- `--ci` — write `.github/workflows/docs.yaml` if missing (never overwrites)
+- `--deps` — ensure `pyproject.toml` `[dependency-groups] docs` includes `sphinx-ape`
+- print a short GitHub Pages checklist
+
+You can also pass the flags individually (`sphinx-ape init --ci --deps .`). Bare `sphinx-ape init` still only scaffolds `docs/` (backward compatible).
+
+The generated workflow installs the package with `uv sync --group docs`, puts `.venv/bin` on `PATH`, then calls the shared composite action `ApeWorX/sphinx-ape@main`. The action expects `sphinx-ape` (and your package) to already be available on that PATH from the consumer venv — it does not install dependencies itself.
+
+Pass `github-token: ${{ secrets.GITHUB_TOKEN }}` (the template does). That token is used to push to `gh-pages` and, once the changelog-from-Releases work lands, to authenticate GitHub API calls during the build.
+
+### Rollout
+
+Plugins opt in by running `sphinx-ape init --full` (or the flags above) in their own repo and opening a PR. There is no fleet-wide auto-rollout from this package.
+
 ## Auto-TOC Tree
 
 The `sphinx-ape init` command creates an `index.rst` file.
@@ -116,12 +147,16 @@ There are three GitHub events that trigger this action:
 
 3. Pull requests or local development: We ensure a successful build.
 
+Callers should use a **thin** workflow: checkout, `astral-sh/setup-uv`, `uv sync --group docs`, put `.venv/bin` on `PATH`, then `uses: ApeWorX/sphinx-ape@main` with `github-token: ${{ secrets.GITHUB_TOKEN }}`. See `sphinx-ape init --ci` for the standard template (aligned with plugins such as ape-foundry).
+
 ## GitHub Pages
 
 To set up this action with GitHub pages for the release-workflow to work, first create a branch named `gh-pages` and push it to GitHub.
 Then, delete everything besides a simple `README.md`, the `.gitignore` file, and the `LICENSE` file.
 Once that is all pushed, verify on the Pages tab that a site was made for you.
 Now, on merges to main and releases, this site should be updated (if you are using the action).
+
+`sphinx-ape init --ci` / `--full` prints this checklist after writing the workflow.
 
 To publish the docs locally, use the `publish` command:
 

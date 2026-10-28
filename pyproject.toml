@@ -76,7 +76,7 @@ dev = [
 [tool.setuptools]
 packages = ["sphinx_ape"]
 [tool.setuptools.package-data]
-sphinx_ape = ["py.typed", "_static/*"]
+sphinx_ape = ["py.typed", "_static/*", "_templates/*"]
 
 [tool.setuptools_scm]
 write_to = "sphinx_ape/version.py"
