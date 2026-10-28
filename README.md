@@ -116,6 +116,11 @@ There are three GitHub events that trigger this action:
 
 3. Pull requests or local development: We ensure a successful build.
 
+When the docs build has access to ``SPHINX_GITHUB_CHANGELOG_TOKEN``, the published site
+also includes a changelog page generated from the repository's GitHub Releases. The docs
+workflow is configured to rebuild on release edits so small changes to older release
+notes can be republished without touching the source tree.
+
 ## GitHub Pages
 
 To set up this action with GitHub pages for the release-workflow to work, first create a branch named `gh-pages` and push it to GitHub.

@@ -252,3 +252,26 @@ class TestDocumentationBuilder:
         index_content = (builder.latest_path / "index.html").read_text()
         assert "Plugin Python Reference" in index_content
         assert "Core Python Reference" in index_content
+
+    def test_build_preserves_static_toctree_pages(self, temp_path):
+        builder = DocumentationBuilder(mode=BuildMode.LATEST, base_path=temp_path)
+        builder.init()
+        custom_toc = (
+            ".. toctree::\n"
+            "    :maxdepth: 1\n\n"
+            "    changelog\n\n"
+            ".. dynamic-toc-tree::\n"
+            "    :userguides:\n"
+            "        - quickstart\n"
+        )
+        builder.index_docs_file.unlink()
+        builder.index_docs_file.write_text(custom_toc)
+        (builder.docs_path / "changelog.rst").write_text("Changelog\n=========\n\nHello.\n")
+
+        builder.build()
+
+        changelog_path = builder.latest_path / "changelog.html"
+        assert changelog_path.is_file()
+
+        index_content = (builder.latest_path / "index.html").read_text()
+        assert 'href="changelog.html"' in index_content
